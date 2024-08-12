@@ -8,7 +8,7 @@ import routes from '../router/authRouter';
 
 const app = express();
 const port = process.env.PORT || '3000';
-const connString = process.env.LOCAL_URI || '';
+const connString = process.env.MONGO_URI || '';
 
 // Middleware
 app.use(cors());
