@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import routes from './router/authRouter';
+import routes from '../router/authRouter';
 
 
 
@@ -28,3 +28,8 @@ app.get('/api', (req, res) => {
 })
 
 app.listen(port, () => console.log(`\n\napp is running on http://localhost:${port}/api`));
+
+
+export default (req: Request, res: Response) => {
+  return app(req, res);
+};
