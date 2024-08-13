@@ -1,19 +1,12 @@
-import type { Request, Response } from 'express';
 import jwt from 'jsonwebtoken'
-import type { JwtPayload } from 'jsonwebtoken';
-import User from '../models/User';
+import User from '../models/User.js';
 
 
 
-const jwtToken: string = process.env.JWT_LOGIN_TOKEN || '';
+const jwtToken = process.env.JWT_LOGIN_TOKEN;
 
-interface AuthRequest extends Request {
-  body: {
-    token: string;
-  };
-}
 
-const authController = async (req: AuthRequest, res: Response) => {
+const authController = async (req, res) => {
   const { token } = req.body;
 
   if (token) {
@@ -24,7 +17,7 @@ const authController = async (req: AuthRequest, res: Response) => {
         return res.status(401).json({ auth: false, data: 'Invalid token' });
       }
 
-      const decoded = jwt.verify(token, jwtToken) as JwtPayload;
+      const decoded = jwt.verify(token, jwtToken);
 
       res.json({
         auth: true,

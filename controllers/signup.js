@@ -1,11 +1,13 @@
-import type { Request, Response } from 'express';
-import { isEmail } from 'validator';
+import pkg from 'validator'
 import bcrypt from 'bcrypt';
-import User from '../models/User';
+import User from '../models/User.js';
+
+
+const { isEmail } = pkg
 
 const saltRounds = 10;
 
-const validateSignUpData = async (req: Request, res: Response): Promise<boolean> => {
+const validateSignUpData = async (req, res) => {
   const  { fullname, email, password }= req.body;
 
   if (!fullname) {
@@ -36,7 +38,7 @@ const validateSignUpData = async (req: Request, res: Response): Promise<boolean>
   return true;
 };
 
-const signupController = async (req: Request, res: Response) => {
+const signupController = async (req, res) => {
   const { fullname, email, password } = req.body;
 
   const isValid = await validateSignUpData(req, res);

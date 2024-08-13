@@ -1,11 +1,13 @@
-import type { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/User";
+import User from "../models/User.js";
 import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
 
-const jwtToken: string = process.env.JWT_LOGIN_TOKEN || '';
+dotenv.config()
 
-const LoginController = async (req: Request, res: Response) => {
+const jwtToken = process.env.JWT_LOGIN_TOKEN;
+
+const LoginController = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -14,7 +16,7 @@ const LoginController = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Account not found!' });
     }
 
-    const match: boolean = await bcrypt.compare(password, dbUser.password) ? true : false
+    const match = await bcrypt.compare(password, dbUser.password) ? true : false
 
     if (match) {
       const token = jwt.sign(

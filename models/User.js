@@ -1,15 +1,8 @@
-import mongoose, { Document, Model, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
-// Define an interface representing a user document in MongoDB
-interface IUser extends Document {
-  fullname: string;
-  email: string;
-  password: string;
-  token: string | null;
-}
 
 // Create a schema corresponding to the document interface
-const userSchema: Schema<IUser> = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
     required: true
@@ -30,6 +23,6 @@ const userSchema: Schema<IUser> = new mongoose.Schema({
 });
 
 // Create a model using the schema and interface
-const User: Model<IUser> = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
 export default User;

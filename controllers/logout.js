@@ -1,7 +1,6 @@
-import type { Request, Response } from "express";
-import User from "../models/User";
+import User from "../models/User.js";
 
-const LogoutController = async (req: Request, res: Response) => {
+const LogoutController = async (req, res) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (token) {

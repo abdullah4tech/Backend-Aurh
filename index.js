@@ -2,13 +2,14 @@ import express from 'express'
 import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
-import routes from './router/authRouter';
+import routes from './router/authRouter.js';
+import dotenv from 'dotenv';
 
-
+dotenv.config()
 
 const app = express();
 const port = process.env.PORT || '3000';
-const connString = process.env.MONGO_URI || '';
+const connString = process.env.MONGO_URI;
 
 // Middleware
 app.use(cors());
@@ -30,6 +31,6 @@ app.get('/api', (req, res) => {
 app.listen(port, () => console.log(`\n\napp is running on http://localhost:${port}/api`));
 
 
-export default (req: Request, res: Response) => {
+export default (req, res) => {
   return app(req, res);
 };

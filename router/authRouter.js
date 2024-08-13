@@ -1,8 +1,8 @@
 import { Router } from "express";
-import signupController from "../controllers/signup";
-import LoginController from "../controllers/login";
-import authController from "../controllers/auth";
-import LogoutController from "../controllers/logout";
+import signupController from "../controllers/signup.js";
+import LoginController from "../controllers/login.js";
+import authController from "../controllers/auth.js";
+import LogoutController from "../controllers/logout.js";
 
 const routes = Router()
 
