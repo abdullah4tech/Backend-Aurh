@@ -9,13 +9,14 @@ dotenv.config()
 
 const app = express();
 const port = process.env.PORT || '3000';
-const connString = process.env.LOCAL_URI;
+const connString = process.env.MONGO_URI;
 
 
-app.use((req, res, next) => {
-  res.set('Document-Policy', 'js-profiling');
-  next();
-});
+const corsOptions = {
+  origin: 'https://auth-system-git-main-abdullah-mustaphas-projects.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+};
 
 // Middleware
 app.use(cors());
@@ -34,12 +35,7 @@ app.get('/api', (req, res) => {
   res.send("You not suppose to do that! you're not authorized here you asshole")
 })
 
-app.listen(port, () => {
-	console.log(`\n\napp is running on http://localhost:${port}/api`)
-
-	// Trigger an error after the server starts
-  	myUndefinedFunction();
-});
+app.listen(port, () => console.log(`\n\napp is running on http://localhost:${port}/api`));
 
 
 export default (req, res) => {
