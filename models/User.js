@@ -1,16 +1,7 @@
 import mongoose from 'mongoose';
 
-const otpSchema = new mongoose.Schema({
-  code: {
-    type: String, 
-    required: true
-  },
-  expiresAt: {
-    type: Date, 
-    required: true
-  }
-});
 
+// Create a schema corresponding to the document interface
 const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
@@ -28,13 +19,10 @@ const userSchema = new mongoose.Schema({
   token: {
     type: String,
     default: null
-  },
-  otp: {
-    type: otpSchema,
-    default: null
   }
 });
 
+// Create a model using the schema and interface
 const User = mongoose.model('User', userSchema);
 
 export default User;
