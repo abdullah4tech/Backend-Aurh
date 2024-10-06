@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const otpSchema = new mongoose.Schema({
   code: {
-    type: String, // Store as string to support leading zeros
+    type: String, 
     required: true
   },
   expiresAt: {
-    type: Date, // Date object to store the expiration time
+    type: Date, 
     required: true
   }
 });

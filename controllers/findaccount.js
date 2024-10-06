@@ -10,9 +10,10 @@ const findAccountController = async (req, res) => {
       return res.status(400).json({ message: 'Account not found!' });
     }
 
-    // Return only necessary user details (e.g., id and email)
+    // Return only necessary user details (e.g., id, name, email)
     const userResponse = {
       id: dbUser._id,
+      name: dbUser.fullname,
       email: dbUser.email,
     };
 
